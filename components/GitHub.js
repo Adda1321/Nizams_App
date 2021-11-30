@@ -10,16 +10,32 @@ import {
 import WifiManager from 'react-native-wifi-reborn';
 import RNAndroidLocationEnabler from 'react-native-android-location-enabler';
 
-const Github = () => {
-    const [ssid, setssid] = useState('Nabeel Mughal');
-    const [pass, setpass] = useState('1234567890');
+const Github = ({status}) => {
+  useEffect(() => {
+    console.log(`the STATUS : ${status}`);
+    if (status === 'background') {
+      // () => {
+      setTimeout(() => {
+        console.log('disconnected!!!!');
+        WifiManager.disconnect();
+      }, 0);
 
-const onDisconnect = () =>{
-    console.log("disconnected!!!!")
+      //};
+    } else {
+      console.log('NOT DISCONNECTING!!!');
+      setTimeout(() => {
+        onConnect();
+      }, 1000);
+    }
+  }, [status]);
+
+  const [ssid, setssid] = useState('ESPap');
+  const [pass, setpass] = useState('');
+  const Disconnect = () => {
     WifiManager.disconnect();
-}
+  };
 
-const onConnect =()=>{
+  const onConnect = () => {
     // WifiManager.setEnabled(true);
     // WifiManager.disconnect();
     //WifiManager.forceWifiUsage(true);
@@ -27,63 +43,60 @@ const onConnect =()=>{
       PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
       {
         title: 'aaaaa',
-        message:'',
+        message: '',
         buttonNegative: '',
         buttonPositive: '',
       },
-      ).then((granted) => {
-        
-        //console.log(granted);
-        if (granted === PermissionsAndroid.RESULTS.GRANTED) 
-        {
-            //console.log("granted");        
-            RNAndroidLocationEnabler.promptForEnableLocationIfNeeded({interval: 10000, fastInterval: 5000})
-            .then(data => {
-              WifiManager.connectToProtectedSSID(ssid, pass, false)
-              .then(
-                () => {
-                  console.log("connectToProtectedSSID successfully!");
-                    },
-                (reason) => {
-                console.log("connectToProtectedSSID failed!");
+    ).then(granted => {
+      //console.log(granted);
+      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+        //console.log("granted");
+        RNAndroidLocationEnabler.promptForEnableLocationIfNeeded({
+          interval: 10000,
+          fastInterval: 5000,
+        })
+          .then(data => {
+            WifiManager.connectToProtectedSSID(ssid, pass, false).then(
+              () => {
+                console.log('connectToProtectedSSID successfully!');
+              },
+              reason => {
+                console.log('connectToProtectedSSID failed!');
                 console.log(reason);
-            }
+              },
             );
-                console.log("location enabled");
-                //WifiManager.connectToProtectedSSID("", "", false)
-             WifiManager.getCurrentWifiSSID().then(
+            console.log('location enabled');
+            //WifiManager.connectToProtectedSSID("", "", false)
+            WifiManager.getCurrentWifiSSID().then(
               ssid => {
-                if(ssid =="YourSSIDName"){
+                if (ssid == 'YourSSIDName') {
+                } else {
                 }
-                 else {
-                }
-                console.log("Your current connected wifi SSID is " + ssid);
+                console.log('Your current connected wifi SSID is ' + ssid);
               },
               () => {
-                console.log("Cannot get current SSID!");
-              }
+                console.log('Cannot get current SSID!');
+              },
             );
-            }).catch(err => {
-              console.log("not permitted to enable location");
-            });
-        } 
-        else 
-        {
-    console.log("not granted");
-    // Permission denied
-        }
-        // expected output: "Success!"
-      });
-  }
-    return (
-        <View>
-            <Button title="Connect to HOTSPOT" onPress={onConnect} />
-            <Button title="Connect to HOTSPOT" onPress={onDisconnect} />
-            
-        </View>
-    );
-}
+          })
+          .catch(err => {
+            console.log('not permitted to enable location');
+          });
+      } else {
+        console.log('not granted');
+        // Permission denied
+      }
+      // expected output: "Success!"
+    });
+  };
+  return (
+    <View>
+      <Button title="Connect to HOTSPOT" onPress={onConnect} />
+      <Button title="Disconnect" onPress={Disconnect} />
+    </View>
+  );
+};
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({});
 
 export default Github;

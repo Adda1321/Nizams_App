@@ -1,6 +1,9 @@
 import React, {useRef, useState, useEffect} from 'react';
 import {StyleSheet, View, AppState, Text} from 'react-native';
 import styles from '../Styles/AppStyle';
+import Github from './GitHub';
+
+
 const AppStateExample = () => {
   const appState = useRef(AppState.currentState);
   const [appStateVisible, setappStateVisible] = useState(appState.current);
@@ -28,14 +31,11 @@ const AppStateExample = () => {
     setappStateVisible(appState.current);
     console.log('AppState: ', appState.current);
   };
-
-  return (
-    <View style={styles.screen}>
-      <Text style={styles.textStyle}>{`Current state is: ${appStateVisible}
-      
-      `}</Text>
-    </View>
-  );
+const statusState = 'ISactive'
+  return <Github status={appStateVisible}/>
+   
+    
 };
+
 
 export default AppStateExample;

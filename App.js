@@ -8,25 +8,30 @@ import Disconnect from './components/Disconnect';
 import Reborn from './components/Reborn';
 import Fetch from './components/Fetch';
 import Github from './components/GitHub';
-
+import Request from './components/Request';
 function App() {
   return (
     <View>
+      <Text>asd</Text>
+      <Text>
+        <Request />
+      </Text>
+
       {/* <Text>
         <Reborn/>
       </Text> */}
       {/* <Text>
         <Disconnect />
       </Text> */}
-      <Text>
+      {/* <Text>
         <Github/>
-      </Text>
-      <Fetch />
-      
-      <Text>
+      </Text> */}
+      {/* <Fetch /> */}
+
+      {/* <Text>
         <AppStateExample />
-      </Text>
-       {/*
+      </Text> */}
+      {/*
       <Text>
         <YourComponent />
       </Text> */}
