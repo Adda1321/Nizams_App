@@ -11,23 +11,23 @@ import WifiManager from 'react-native-wifi-reborn';
 import RNAndroidLocationEnabler from 'react-native-android-location-enabler';
 
 const Github = ({status}) => {
-  useEffect(() => {
-    console.log(`the STATUS : ${status}`);
-    if (status === 'background') {
-      // () => {
-      setTimeout(() => {
-        console.log('disconnected!!!!');
-        WifiManager.disconnect();
-      }, 0);
+//   useEffect(() => {
+//     console.log(`the STATUS : ${status}`);
+//     if (status === 'background') {
+//       // () => {
+//       setTimeout(() => {
+//         console.log('disconnected!!!!');
+//         WifiManager.disconnect();
+//       }, 0);
 
-      //};
-    } else {
-      console.log('NOT DISCONNECTING!!!');
-      setTimeout(() => {
-        onConnect();
-      }, 1000);
-    }
-  }, [status]);
+//       //};
+//     } else {
+//       console.log('NOT DISCONNECTING!!!');
+//       setTimeout(() => {
+//         onConnect();
+//       }, 1000);
+//     }
+//   }, [status]);
 
   const [ssid, setssid] = useState('ESPap');
   const [pass, setpass] = useState('');
