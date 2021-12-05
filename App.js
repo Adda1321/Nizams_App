@@ -9,12 +9,16 @@ import Reborn from './components/Reborn';
 import Fetch from './components/Fetch';
 import Github from './components/GitHub';
 import Request from './components/Request';
+import Postrequest from './components/PostRequest';
 function App() {
   return (
     <View>
       <Text>asd</Text>
       <Text>
         <Request />
+      </Text>
+      <Text>
+        <Postrequest/>
       </Text>
 
       {/* <Text>

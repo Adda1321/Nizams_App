@@ -14,7 +14,7 @@ const Request = () => {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/posts')
+    fetch('http://192.168.4.1')
       .then(res => res.json())
       .then(result => {
         console.log(result);
@@ -43,7 +43,7 @@ const Request = () => {
     return (
       <View>
         <Text>
-          {items}
+          {items.key}
         </Text>
       </View>
     );
