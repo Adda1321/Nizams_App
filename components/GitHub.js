@@ -29,8 +29,8 @@ const Github = ({status}) => {
 //     }
 //   }, [status]);
 
-  const [ssid, setssid] = useState('ESPap');
-  const [pass, setpass] = useState('');
+  const [ssid, setssid] = useState('431d');
+  const [pass, setpass] = useState('35225265');
   const Disconnect = () => {
     WifiManager.disconnect();
   };

@@ -13,14 +13,12 @@ const Postrequest = () => {
   const [posts, setposts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState();
-  const [Data, setData] = useState({
-    key: 'POST DATA',
-  });
+  // const [Data, setData] = useState('');
 
-  useEffect(() => {
-    console.log('in useffect');
+  const Connect = (Data) => {
+    console.log(`http://192.168.4.1/${Data}`);
 
-    axios.post('http://192.168.4.1/',Data)
+    axios.get(`http://192.168.4.1/${Data}`)
         .then(res => {
           console.log(`Data to be Posted: ${Data.key}`)
         console.log(res);
@@ -32,7 +30,8 @@ const Postrequest = () => {
       .then(function () {
         // always executed
       });
-  }, []);
+    }
+  // }, [Data]);
 
   if (error || !Array.isArray(posts)) {
     return <p>There was an error loading your data!</p>;
@@ -40,8 +39,11 @@ const Postrequest = () => {
 
   return (
     <View>
-      <Button title="POST" onPress={() => {}} />
-      {/* <Text>{Data.key}</Text> */}
+      <Button  title=' BOTH' onPress={()=>Connect('both')} />
+       <Button  title=' STOP' onPress={()=>Connect('stop')}/>
+       <Button  title=' MASTER' onPress={()=>Connect('master')}/>
+       <Button  title=' SLAVE' onPress={()=>Connect('slave')}/>
+      <Button  title=' DoorLock' onPress={()=>Connect('doorlock')}/>
     </View>
   );
 };

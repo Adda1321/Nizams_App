@@ -23,6 +23,7 @@
     "react-native-android-wifi": "0.0.41",
     "react-native-safe-area-context": "^3.3.2",
     "react-native-screens": "^3.9.0",
+    "react-native-sensitive-info": "^6.0.0-alpha.9",
     "react-native-wifi-reborn": "^4.4.1"
   },
   "devDependencies": {
