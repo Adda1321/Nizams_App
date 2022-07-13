@@ -16,9 +16,9 @@ const Postrequest = () => {
   // const [Data, setData] = useState('');
 
   const Connect = (Data) => {
-    console.log(`http://192.168.4.1/${Data}`);
+    console.log(`http://192.168.4.1${Data}`);
 
-    axios.get(`http://192.168.4.1/${Data}`)
+    axios.get(`http://192.168.4.1${Data}`)
         .then(res => {
           console.log(`Data to be Posted: ${Data.key}`)
         console.log(res);
@@ -39,11 +39,11 @@ const Postrequest = () => {
 
   return (
     <View>
-      <Button  title=' BOTH' onPress={()=>Connect('both')} />
-       <Button  title=' STOP' onPress={()=>Connect('stop')}/>
-       <Button  title=' MASTER' onPress={()=>Connect('master')}/>
-       <Button  title=' SLAVE' onPress={()=>Connect('slave')}/>
-      <Button  title=' DoorLock' onPress={()=>Connect('doorlock')}/>
+      <Button  title=' BOTH' onPress={()=>Connect('/activate?func=both')} />
+       <Button  title=' STOP' onPress={()=>Connect('/activate?func=stop')}/>
+       <Button  title=' MASTER' onPress={()=>Connect('/activate?func=master')}/>
+       <Button  title=' SLAVE' onPress={()=>Connect('/activate?func=slave')}/>
+      <Button  title=' DoorLock' onPress={()=>Connect('/activate?func=doorlock')}/>
     </View>
   );
 };
